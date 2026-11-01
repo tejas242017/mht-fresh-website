@@ -23,8 +23,12 @@ export async function onRequestPost({ request, env }) {
       !/^https:\/\/unsplash\.com\//.test(p.photographerUrl)) return json({ error: "Photo URLs failed validation." }, 400);
   const usage = String(body.usage || "Unassigned").slice(0, 80);
   // A selection for use on the site is a download-like event under Unsplash API guidelines.
-  // Rejecting an image does not trigger download tracking.
-  if (body.status === "approved") {
+  // Repeated approval is idempotent; a rejected image can later be approved.
+  const existing = await env.MHT_MEDIA_DB.prepare(
+    "SELECT status FROM media_assets WHERE provider='unsplash' AND source_id=?"
+  ).bind(p.id).first();
+  if (body.status === "approved" && (!existing || existing.status !== "approved")) {
+    if (!env.UNSPLASH_ACCESS_KEY) return json({ error: "Unsplash Access Key is not configured." }, 503);
     const track = await fetch(p.downloadLocation, {
       headers: { Authorization: "Client-ID " + env.UNSPLASH_ACCESS_KEY, "Accept-Version": "v1" }
     });
