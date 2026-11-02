@@ -115,37 +115,41 @@ function bookProfile(name){const p=varietyProfiles[name];const facts=p?[
 let bookIndex=0;
 function renderBook(){if(!selectedFruit)return;const varieties=selectedFruit.varieties;const name=varieties[bookIndex];const {p,facts}=bookProfile(name);$("bookFruit").textContent="MHT Fresh · "+selectedFruit.name+" field guide";$("bookKicker").textContent=selectedFruit.cat+" · Variety "+(bookIndex+1);$("bookTitle").textContent=name;$("bookDescription").textContent=p?(p.appearance+" "+p.flesh+" "+p.taste):("Explore "+name+", a listed commercial variety/type of "+selectedFruit.name+". This page is a research template; technical values will be added only after verification against reliable cultivar, post-harvest and supplier sources.");$("bookFacts").innerHTML=facts.map(x=>'<div class="book-fact"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join("");$("bookNote").textContent=p?p.note:"Commercial note: do not treat generic reference values as a shipment specification. Confirm current crop, grade, maturity, pack and lot measurements with the supplier.";loadBookVarietyImage(name,p);$("bookProgress").textContent=(bookIndex+1)+" / "+varieties.length;$("bookPrev").disabled=bookIndex===0;$("bookNext").disabled=bookIndex===varieties.length-1;$("bookDots").innerHTML=varieties.map((_,i)=>'<span class="'+(i===bookIndex?'active':'')+'"></span>').join("")}
 
-const varietyImageCache={};let bookImageRequest=0;
+let imageRequestId=0;
 async function loadBookVarietyImage(name,p){
- const requestId=++bookImageRequest;
- const photo=$("bookPhoto"),img=$("bookImage");
- photo.classList.add("no-image");img.hidden=true;img.removeAttribute("src");
+ const requestId=++imageRequestId,photo=$("bookPhoto"),img=$("bookImage");
+ photo.classList.add("no-image");img.hidden=true;img.removeAttribute("src");img.onload=null;img.onerror=null;
  img.alt=selectedFruit.name+" "+name+" variety photograph";
- if(p&&p.image){img.onload=()=>{if(requestId!==bookImageRequest)return;photo.classList.remove("no-image");img.classList.remove("loading");img.hidden=false};img.onerror=()=>{if(requestId!==bookImageRequest)return;img.hidden=true;photo.classList.add("no-image")};img.src=p.image;return}
- const key=selectedFruit.name+"|"+name;
- if(varietyImageCache[key]){img.onload=()=>{if(requestId!==bookImageRequest)return;photo.classList.remove("no-image");img.hidden=false};img.onerror=()=>{if(requestId!==bookImageRequest)return;img.hidden=true};img.src=varietyImageCache[key];return}
+ const show=url=>{if(requestId!==imageRequestId)return;img.onload=()=>{if(requestId!==imageRequestId)return;photo.classList.remove("no-image");img.hidden=false};img.onerror=()=>{if(requestId!==imageRequestId)return;img.hidden=true;photo.classList.add("no-image")};img.src=url};
+ if(p&&p.image){show(p.image);return}
  try{
-  const q=name+" "+selectedFruit.name+" fruit variety";
-  const api="https://commons.wikimedia.org/w/api.php?"+new URLSearchParams({action:"query",format:"json",origin:"*",generator:"search",gsrsearch:q,gsrnamespace:"6",gsrlimit:"8",prop:"imageinfo",iiprop:"url",iiurlwidth:"1000"});
-  const res=await fetch(api);if(!res.ok)throw new Error("image search unavailable");
+  const q='"'+name+'" '+selectedFruit.name+' fruit cultivar';
+  const api="https://commons.wikimedia.org/w/api.php?"+new URLSearchParams({action:"query",format:"json",origin:"*",generator:"search",gsrsearch:q,gsrnamespace:"6",gsrlimit:"12",prop:"imageinfo",iiprop:"url",iiurlwidth:"1000"});
+  const res=await fetch(api);if(!res.ok)throw new Error("Commons search failed");
   const data=await res.json();const pages=Object.values(data.query?.pages||{});
-  const exact=pages.find(x=>x.title.toLowerCase().includes(name.toLowerCase())&&x.imageinfo?.[0]?.thumburl);
-  const candidate=exact;
-  if(!candidate)throw new Error("no matching variety image found");
-  if(requestId!==bookImageRequest)return;const url=candidate.imageinfo[0].thumburl;varietyImageCache[key]=url;
-  img.onload=()=>{if(requestId!==bookImageRequest)return;photo.classList.remove("no-image");img.classList.remove("loading");img.hidden=false};
-  img.onerror=()=>{if(requestId!==bookImageRequest)return;img.hidden=true;photo.classList.add("no-image")};img.src=url;
- }catch(e){if(requestId!==bookImageRequest)return;photo.classList.add("no-image");img.hidden=true}
+  const norm=x=>x.toLowerCase().replace(/[^a-z0-9]/g,"");
+  const target=norm(name);
+  const exact=pages.find(x=>norm(x.title).includes(target)&&x.imageinfo?.[0]?.thumburl);
+  if(!exact)throw new Error("No verified variety-specific image found");
+  show(exact.imageinfo[0].thumburl);
+ }catch(e){if(requestId===imageRequestId){photo.classList.add("no-image");img.hidden=true}}
 }
 let swipeStartX=0,swipeStartY=0,swipePointerId=null;
 const bookPage=$("bookOverlay").querySelector(".book-page");
-function turnBook(delta){if(!selectedFruit)return;const next=bookIndex+delta;if(next<0||next>=selectedFruit.varieties.length)return;bookIndex=next;renderBook()}
-bookPage.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse"&&e.button!==0)return;swipeStartX=e.clientX;swipeStartY=e.clientY;swipePointerId=e.pointerId;},{passive:true});
-window.addEventListener("pointerup",e=>{if(swipePointerId===null||e.pointerId!==swipePointerId)return;const dx=e.clientX-swipeStartX,dy=e.clientY-swipeStartY;swipePointerId=null;if(Math.abs(dx)<42||Math.abs(dx)<Math.abs(dy)*1.15)return;turnBook(dx<0?1:-1)});
-window.addEventListener("pointercancel",()=>{swipePointerId=null});
-bookPage.addEventListener("dragstart",e=>e.preventDefault());
-
-
+bookPage.style.touchAction="pan-y";
+bookPage.addEventListener("pointerdown",e=>{
+ if(e.pointerType==="mouse"&&e.button!==0)return;
+ swipeStartX=e.clientX;swipeStartY=e.clientY;swipePointerId=e.pointerId;
+ try{bookPage.setPointerCapture(e.pointerId)}catch(_){}
+});
+bookPage.addEventListener("pointerup",e=>{
+ if(swipePointerId!==e.pointerId)return;
+ const dx=e.clientX-swipeStartX,dy=e.clientY-swipeStartY;swipePointerId=null;
+ if(Math.abs(dx)<45||Math.abs(dx)<Math.abs(dy)*1.15)return;
+ if(dx<0&&bookIndex<selectedFruit.varieties.length-1){bookIndex++;renderBook()}
+ else if(dx>0&&bookIndex>0){bookIndex--;renderBook()}
+});
+bookPage.addEventListener("pointercancel",()=>{swipePointerId=null});
 function openBook(){bookIndex=Math.max(0,selectedFruit.varieties.indexOf(selectedVariety));renderBook();$("bookOverlay").classList.add("open");document.body.style.overflow="hidden"}
 function closeBook(){$("bookOverlay").classList.remove("open");document.body.style.overflow=""}
 $("openBook").addEventListener("click",openBook);$("bookClose").addEventListener("click",closeBook);$("bookPrev").addEventListener("click",()=>{if(bookIndex>0){bookIndex--;renderBook()}});$("bookNext").addEventListener("click",()=>{if(bookIndex<selectedFruit.varieties.length-1){bookIndex++;renderBook()}});$("bookOverlay").addEventListener("click",e=>{if(e.target===$("bookOverlay"))closeBook()});document.addEventListener("keydown",e=>{if(!$("bookOverlay").classList.contains("open"))return;if(e.key==="Escape")closeBook();if(e.key==="ArrowRight")turnBook(1);if(e.key==="ArrowLeft")turnBook(-1)});
