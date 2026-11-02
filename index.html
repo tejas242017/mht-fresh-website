@@ -22,19 +22,71 @@ section{scroll-margin-top:90px}.section{padding:88px 0}.sectionhead{display:flex
 .credit{position:absolute;z-index:3;right:8px;bottom:7px;font-size:9px;color:white;text-shadow:0 1px 3px #000}.credit a{text-decoration:underline}
 @media(max-width:900px){.navlinks{gap:16px}.hero-grid{gap:20px}.hero-visual{min-height:390px}.fruitgrid{grid-template-columns:repeat(2,1fr)}.origin-grid{grid-template-columns:repeat(3,1fr)}.trustitem{padding:16px 8px}.trustitem small{display:none}}
 @media(max-width:650px){.topline .wrap{justify-content:center;text-align:center}.topline .wrap span:last-child{display:none}.nav{height:68px}.menu{display:block}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:white;padding:18px 5%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.navcta{display:none}.hero{padding:34px 0 42px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:310px}.hero-photo{left:18px;bottom:20px}.photo-label{left:35px;bottom:42px}.floating-card{width:160px;padding:13px 15px}.floating-card b{font-size:21px}.hero-copy>p{font-size:14px}.trustbar .wrap{grid-template-columns:1fr 1fr}.trustitem{border-bottom:1px solid var(--line)}.trustitem:nth-child(2){border-right:0}.trustitem:nth-child(3){padding-left:0}.section{padding:60px 0}.sectionhead{display:block}.sectionhead p{margin-top:12px}.fruitgrid{gap:9px}.fruitcard{min-height:220px}.fruitcopy{left:13px;right:10px;bottom:12px}.fruitcopy h3{font-size:18px}.splitgrid,.aboutgrid{grid-template-columns:1fr}.audience{padding:28px;min-height:280px}.aboutvisual{height:300px}.aboutbadge{right:0}.aboutgrid{gap:35px}.origin-grid{grid-template-columns:1fr 1fr}.contactgrid{display:block}.contactdetails{margin-top:25px}footer .wrap{display:block}footer .wrap span{display:block;margin-top:8px}}
+
+/* Wogan seasonal campaign */
+.wogan-campaign{padding:54px 0 0;background:linear-gradient(135deg,#f7f6f0 0%,#f1f1e8 54%,#e8eddf 100%);overflow:hidden}
+.campaign-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:54px;align-items:center;padding-bottom:54px}
+.campaign-kicker{display:flex;align-items:center;gap:10px;color:#31543d;font-size:10px;font-weight:800;letter-spacing:.16em}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#d98245;box-shadow:0 0 0 5px #d9824520}
+.campaign-origin{font-size:10px;letter-spacing:.17em;font-weight:800;color:#8b6849;margin:34px 0 0}
+.campaign-copy h1{font-size:clamp(48px,6vw,78px);margin:13px 0 20px;line-height:.99}
+.campaign-copy h1 em{color:#bd6d3b}
+.campaign-lead{font-size:15px;line-height:1.85;color:#5e6d61;max-width:500px}
+.campaign-tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 28px}
+.campaign-tags span{border:1px solid #d9dfd1;background:#ffffff9c;padding:7px 11px;border-radius:30px;color:#425846;font-size:10px;font-weight:700}
+.campaign-actions{gap:22px;flex-wrap:wrap}
+.campaign-footnote{font-size:10px;line-height:1.6;color:#788176;max-width:430px;margin-top:24px}
+.campaign-visual{position:relative;padding:0 0 24px 24px}
+.campaign-image{height:490px;display:block;position:relative;overflow:hidden;background:#dfe6d7;box-shadow:0 26px 70px #243c2c20}
+.campaign-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#10291d55)}
+.campaign-image img{height:100%;width:100%;object-fit:cover;transition:transform .7s}
+.campaign-image:hover img{transform:scale(1.035)}
+.image-stamp{position:absolute;z-index:2;top:20px;right:20px;background:#fffefaed;color:#244f39;padding:11px 14px;font-size:9px;letter-spacing:.13em;font-weight:800;display:grid;gap:4px}
+.image-stamp b{font-size:8px;color:#bd6d3b}
+.campaign-image-caption{display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.12em;color:#5b6b5d;padding:12px 2px}
+.campaign-float{position:absolute;left:0;bottom:57px;background:#fffefa;padding:17px 22px;box-shadow:0 12px 35px #172d1d18;display:grid;gap:3px;min-width:210px}
+.campaign-float small{font-size:8px;letter-spacing:.15em;color:#bd6d3b;font-weight:800}
+.campaign-float strong{font:700 19px Manrope;color:#173d2b}
+.campaign-float span{font-size:10px;color:#68746b}
+.campaign-bottom{border-top:1px solid #dfe4d8}
+.campaign-bottom-inner{min-height:48px;display:flex;justify-content:space-between;align-items:center;gap:18px;font-size:9px;letter-spacing:.12em;color:#68746b;font-weight:800}
+.campaign-bottom i{font-style:normal;color:#bd6d3b;padding:0 5px}
+@media(max-width:850px){.campaign-grid{gap:25px}.campaign-image{height:390px}}
+@media(max-width:650px){.wogan-campaign{padding-top:35px}.campaign-grid{grid-template-columns:1fr;gap:25px;padding-bottom:35px}.campaign-origin{margin-top:24px}.campaign-copy h1{font-size:clamp(46px,13vw,64px)}.campaign-lead{font-size:14px}.campaign-visual{padding-left:12px}.campaign-image{height:310px}.campaign-float{bottom:52px;min-width:185px;padding:13px 16px}.campaign-bottom-inner{padding:12px 0;display:grid;gap:5px}.campaign-bottom-inner span:last-child{font-size:8px}}
+
 </style>
 </head>
 <body>
 <div class="topline"><div class="wrap"><span>GLOBAL FRUIT SOURCING&nbsp; · &nbsp;INDIA MARKET ACCESS</span><span>Pune, Maharashtra, India &nbsp; | &nbsp; <a href="mailto:info@mhtfresh.com">info@mhtfresh.com</a></span></div></div>
-<header><div class="wrap nav"><a class="brand" href="index.html"><span class="brandmark">MHT<span>Fresh</span><small>A DIVISION OF MHT GROUP</small></span></a><button class="menu" id="menu" aria-label="Open navigation">☰</button><nav class="navlinks" id="navlinks"><a href="#home">Home</a><a href="#fruit-range">Featured Product</a><a href="#trade">For Buyers & Exporters</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a class="navcta" href="#contact">Discuss a requirement&nbsp; ↗</a></div></header>
+<header><div class="wrap nav"><a class="brand" href="index.html"><span class="brandmark">MHT<span>Fresh</span><small>A DIVISION OF MHT GROUP</small></span></a><button class="menu" id="menu" aria-label="Open navigation">☰</button><nav class="navlinks" id="navlinks"><a href="#home">Home</a><a href="#home">Wogan Spotlight</a><a href="#trade">For Buyers & Exporters</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a class="navcta" href="#contact">Discuss a requirement&nbsp; ↗</a></div></header>
 <main id="home">
-<section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><div class="eyebrow">Fresh produce · Global connections</div><h1>Good fruit.<br><em>Clear trade.</em><br>Closer markets.</h1><p>Connecting international fruit suppliers with India’s importers, distributors and wholesale markets through dependable sourcing and practical trade coordination.</p><div class="hero-actions"><a class="btn" href="#contact">Start a conversation&nbsp; ↗</a><a class="textlink" href="wogan.html">View featured product&nbsp; →</a></div><div class="hero-note"><strong>MHT Fresh</strong><span>Global sourcing · India distribution</span></div></div><div class="hero-visual"><div class="hero-photo"><img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=1400&q=85" alt="Fresh assortment of colourful fruit" fetchpriority="high"></div><div class="photo-label">A world of fresh produce</div><div class="floating-card"><b>Global → India</b><span>Supplier connections. Market access. Trade support.</span></div></div></div></section>
+<section class="hero wogan-campaign" id="home">
+  <div class="wrap campaign-grid">
+    <div class="campaign-copy">
+      <div class="campaign-kicker"><span class="live-dot"></span> SEASONAL FEATURE · CITRUS COLLECTION</div>
+      <p class="campaign-origin">FROM WUMING, GUANGXI · CHINA</p>
+      <h1>Meet the <em>Wogan</em><br>Orah Mandarin.</h1>
+      <p class="campaign-lead">A distinctive mandarin with a story rooted in Wuming. Discover the supplier’s Wogan programme, explore the growing region and speak with MHT Fresh about opportunities for the Indian market.</p>
+      <div class="campaign-tags"><span>Wuming, Guangxi</span><span>Mandarin citrus</span><span>Supplier profile</span></div>
+      <div class="hero-actions campaign-actions">
+        <a class="btn" href="https://wa.me/918999662331?text=Hello%20MHT%20Fresh%2C%20I%20would%20like%20to%20enquire%20about%20Wogan%20Orah%20Mandarin.">Enquire about Wogan ↗</a>
+        <a class="textlink" href="wogan.html">Explore the product story →</a>
+      </div>
+      <div class="campaign-footnote">Current availability, grade, pack format and shipment terms are confirmed individually for each enquiry.</div>
+    </div>
+    <div class="campaign-visual">
+      <a class="campaign-image" href="wogan.html" aria-label="Explore Wogan Orah Mandarin product profile">
+        <img src="https://xiongmingfruits.com/wp-content/uploads/2025/08/wuming-wogan-xiongming-fruits.jpg" alt="Wuming Wogan Orah mandarin oranges, supplier reference image" fetchpriority="high">
+        <span class="image-stamp">MHT FRESH <b>SEASONAL SPOTLIGHT</b></span>
+      </a>
+      <div class="campaign-image-caption"><span>WOGAN · ORAH MANDARIN</span><span>01 / FEATURED PRODUCT</span></div>
+      <div class="campaign-float"><small>ORIGIN STORY</small><strong>Wuming, Guangxi</strong><span>China · Citrus growing region</span></div>
+    </div>
+  </div>
+  <div class="campaign-bottom"><div class="wrap campaign-bottom-inner"><span>01 &nbsp; FEATURED THIS SEASON</span><span>GLOBAL SOURCING <i>·</i> INDIA MARKET ACCESS <i>·</i> TRADE CONNECTIONS</span></div></div>
+</section>
 <div class="trustbar"><div class="wrap"><div class="trustitem"><span class="trusticon">◎</span><div><b>Global sourcing</b><small>Origin-led connections</small></div></div><div class="trustitem"><span class="trusticon">↗</span><div><b>India market access</b><small>Local trade coordination</small></div></div><div class="trustitem"><span class="trusticon">◇</span><div><b>Trade transparency</b><small>Clear communication</small></div></div><div class="trustitem"><span class="trusticon">◷</span><div><b>Fresh produce focus</b><small>Seasonal fruit programmes</small></div></div></div></div>
-<section class="section" id="fruit-range"><div class="wrap"><div class="sectionhead"><div><div class="eyebrow">Explore our range</div><h2>A featured fruit<br>from trusted origins.</h2></div><p>Explore our currently featured product. Availability is seasonal and subject to supplier programmes, market conditions and import requirements.</p></div>
-<div class="fruitgrid">
-<a class="fruitcard" href="wogan.html"><img src="https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=700&q=80" alt="Fresh citrus fruits" loading="lazy"><div class="fruitcopy"><small>Citrus</small><h3>Mandarins</h3><span>South Africa · China</span></div></a>
-</div>
-</div></section>
+
 <section class="split section" id="trade"><div class="wrap"><div class="sectionhead"><div><div class="eyebrow" style="color:#d8e7b6">Trade with MHT Fresh</div><h2 style="color:white">Two sides of the same<br>fresh produce network.</h2></div><p style="color:#cbd8ce">Whether you grow, export, import or distribute, we aim to make the right trade connections easier to build.</p></div><div class="splitgrid"><article class="audience"><div class="eyebrow">For exporters & growers</div><h3>Looking for a route into the Indian market?</h3><p>Introduce your fruit programme, origin, varieties and packing formats. We welcome enquiries from suppliers seeking distribution and market coordination in India.</p><a class="textlink" href="mailto:info@mhtfresh.com?subject=Exporter%20Enquiry">Share your supply programme&nbsp; →</a></article><article class="audience"><div class="eyebrow">For importers & buyers</div><h3>Sourcing fruit for your market?</h3><p>Tell us the fruit, origin preference, grade, packing and expected volume. We can discuss sourcing possibilities and trade requirements.</p><a class="textlink" href="mailto:info@mhtfresh.com?subject=Buyer%20Enquiry">Send a buying enquiry&nbsp; →</a></article></div></div></section>
 <section class="section" id="about"><div class="wrap aboutgrid"><div class="aboutvisual"><img src="https://images.unsplash.com/photo-1574226516831-e1dff420e8f8?auto=format&fit=crop&w=1000&q=85" alt="Fresh produce prepared for market" loading="lazy"><div class="aboutbadge">MHT Group · Pune, India</div></div><div class="aboutcopy"><div class="eyebrow">About MHT Fresh</div><h2>Connecting growers, exporters and India’s fresh fruit markets.</h2><p>MHT Fresh, a division of MHT Group, works across international fruit sourcing, import coordination and distribution relationships in India.</p><p>Our approach is built around clear communication, practical market understanding and long-term relationships between suppliers and buyers. We welcome new fruit programmes and enquiries from across the trade.</p><div class="aboutpoints"><div>Origin-led sourcing</div><div>Market coordination</div><div>Supplier relationships</div><div>Buyer-focused support</div></div><a class="textlink" href="#contact">Get to know our team&nbsp; →</a></div></div></section>
 <section class="origins section"><div class="wrap"><div class="sectionhead"><div><div class="eyebrow">A global perspective</div><h2>Our featured sourcing<br>origin.</h2></div><p>Origin references are indicative examples from our product research catalogue, not a representation of current stock or confirmed supply contracts.</p></div><div class="origin-grid"><div class="origin"><b>South Africa</b><small>Citrus · Apples · Grapes</small></div><div class="origin"><b>Iran</b><small>Apples · Kiwi · Dates</small></div><div class="origin"><b>Vietnam</b><small>Dragon fruit · Tropical fruit</small></div><div class="origin"><b>Egypt</b><small>Oranges · Citrus</small></div><div class="origin"><b>India</b><small>Domestic & seasonal produce</small></div></div></div></section>
