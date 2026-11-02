@@ -39,8 +39,8 @@ section{scroll-margin-top:90px}.section{padding:88px 0}.sectionhead{display:flex
 .campaign-visual{position:relative;padding:0 0 24px 24px}
 .campaign-image{height:490px;display:block;position:relative;overflow:hidden;background:#dfe6d7;box-shadow:0 26px 70px #243c2c20}
 .campaign-image:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#10291d55)}
-.campaign-image img{height:100%;width:100%;object-fit:cover;transition:transform .7s}
-.campaign-image:hover img{transform:scale(1.035)}
+.campaign-image img,.season-film{height:100%;width:100%;object-fit:cover;display:block}.season-film{background:#17241c}.campaign-image img{transition:transform .7s}
+.campaign-image:hover img{transform:scale(1.035)}.campaign-image .season-film{position:absolute;inset:0}.campaign-image .image-stamp{pointer-events:none}
 .image-stamp{position:absolute;z-index:2;top:20px;right:20px;background:#fffefaed;color:#244f39;padding:11px 14px;font-size:9px;letter-spacing:.13em;font-weight:800;display:grid;gap:4px}
 .image-stamp b{font-size:8px;color:#bd6d3b}
 .campaign-image-caption{display:flex;justify-content:space-between;gap:12px;font-size:9px;letter-spacing:.12em;color:#5b6b5d;padding:12px 2px}
@@ -65,8 +65,8 @@ section{scroll-margin-top:90px}.section{padding:88px 0}.sectionhead{display:flex
     <div class="campaign-copy">
       <div class="campaign-kicker"><span class="live-dot"></span> SEASONAL FEATURE · CITRUS COLLECTION</div>
       <p class="campaign-origin">FROM WUMING, GUANGXI · CHINA</p>
-      <h1>Meet the <em>Wogan</em><br>Orah Mandarin.</h1>
-      <p class="campaign-lead">A distinctive mandarin with a story rooted in Wuming. Discover the supplier’s Wogan programme, explore the growing region and speak with MHT Fresh about opportunities for the Indian market.</p>
+      <h1>Mandarin season,<br><em>from orchard</em><br>to table.</h1>
+      <p class="campaign-lead">A journey shaped by care at every step — from growing and harvesting to careful packing, shipping and the simple joy of sharing fresh mandarins. This season, follow the MHT Fresh story from orchard to table.</p>
       <div class="campaign-tags"><span>Wuming, Guangxi</span><span>Mandarin citrus</span><span>Supplier profile</span></div>
       <div class="hero-actions campaign-actions">
         <a class="btn" href="https://wa.me/918999662331?text=Hello%20MHT%20Fresh%2C%20I%20would%20like%20to%20enquire%20about%20Wogan%20Orah%20Mandarin.">Enquire about Wogan ↗</a>
@@ -75,11 +75,14 @@ section{scroll-margin-top:90px}.section{padding:88px 0}.sectionhead{display:flex
       <div class="campaign-footnote">Current availability, grade, pack format and shipment terms are confirmed individually for each enquiry.</div>
     </div>
     <div class="campaign-visual">
-      <a class="campaign-image" href="wogan.html" aria-label="Explore Wogan Orah Mandarin product profile">
-        <img src="https://xiongmingfruits.com/wp-content/uploads/2025/08/wuming-wogan-xiongming-fruits.jpg" alt="Wuming Wogan Orah mandarin oranges, supplier reference image" fetchpriority="high">
-        <span class="image-stamp">MHT FRESH <b>SEASONAL SPOTLIGHT</b></span>
-      </a>
-      <div class="campaign-image-caption"><span>WOGAN · ORAH MANDARIN</span><span>01 / FEATURED PRODUCT</span></div>
+      <div class="campaign-image" aria-label="MHT Fresh Mandarin season film">
+        <video class="season-film" autoplay muted loop playsinline controls preload="metadata" poster="https://xiongmingfruits.com/wp-content/uploads/2025/08/wuming-wogan-xiongming-fruits.jpg" aria-label="Mandarin season story: orchard care, harvesting, packing, shipping and families enjoying mandarins">
+          <source src="assets/mandarin-season-captioned.mp4" type="video/mp4">
+          Your browser does not support HTML video. Please use the product profile link below.
+        </video>
+        <span class="image-stamp">MHT FRESH <b>MANDARIN SEASON FILM</b></span>
+      </div>
+      <div class="campaign-image-caption"><span>FROM ORCHARD TO TABLE</span><span>MANDARIN SEASON · MHT FRESH</span></div>
       <div class="campaign-float"><small>ORIGIN STORY</small><strong>Wuming, Guangxi</strong><span>China · Citrus growing region</span></div>
     </div>
   </div>
